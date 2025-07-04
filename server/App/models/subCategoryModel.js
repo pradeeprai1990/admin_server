@@ -14,5 +14,14 @@ let subcategorySchema= new mongoose.Schema({
     subcategoryStatus:Boolean
 })
 
+subcategorySchema.virtual('subsubcategories', {
+    ref: 'subsubcategory',
+    localField: '_id',
+    foreignField: 'subCategory'
+});
+
+
+subcategorySchema.set('toJSON', { virtuals: true });
+
 let subcategoryModel=mongoose.model("subcategory",subcategorySchema)
 module.exports={subcategoryModel}
